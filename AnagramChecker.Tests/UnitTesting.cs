@@ -1,11 +1,17 @@
+﻿using System;
 using NUnit.Framework;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using AnagramChecker;
 using NUnit.Framework.Legacy;
+
 
 namespace AnagramChecker.Tests
 {
     [TestFixture]
-    public class AnagramCheckerTests
+    public class UnitTesting
     {
         [Test]
         public void WordsAreAnagrams_ValidAnagramLowerCase_ReturnsTrue()
@@ -60,71 +66,33 @@ namespace AnagramChecker.Tests
         }
 
         [Test]
-        public void WordsAreAnagrams_InvalidAnagramOneArgumentWithSpace_ThrowsException()
+        public void WordsAreAnagrams_InvalidAnagramWithSpace_ThrowsException()
         {
             // Arrange
             var anagramChecker = new AnagramChecker();
 
-            // Act
-            string errorMessage = "";
-            try
-            {
-                anagramChecker.WordsAreAnagrams("real fun", "funeral");
-            }
-            catch (ArgumentException ex)
-            {
-                // Capture the exception message
-                errorMessage = ex.Message;
-            }
-
-            // Assert
-            Assert.Fail($"{errorMessage}");
+            // Act and Assert
+            Assert.Throws<ArgumentException>(() => anagramChecker.WordsAreAnagrams("real fun", "funeral"));
         }
 
-       
         [Test]
-        public void WordsAreAnagrams_InvalidAnagramBothArgumentWithSpaces_ThrowsException()
+        public void WordsAreAnagrams_InvalidAnagramWithSpaces_ThrowsException()
         {
             // Arrange
             var anagramChecker = new AnagramChecker();
 
-            // Act
-            string errorMessage = "";
-            try
-            {
-                anagramChecker.WordsAreAnagrams("forty five", "over fifty");
-            }
-            catch (ArgumentException ex)
-            {
-                // Capture the exception message
-                errorMessage = ex.Message;
-            }
-
-            // Assert
-            Assert.Fail($"{errorMessage}");
-           
+            // Act and Assert
+            Assert.Throws<ArgumentException>(() => anagramChecker.WordsAreAnagrams("forty five", "over fifty"));
         }
+
         [Test]
         public void WordsAreAnagrams_NullFirstArgument_ThrowsException()
         {
-                  
             // Arrange
             var anagramChecker = new AnagramChecker();
 
-            // Act
-            string errorMessage = "";
-            try
-            {
-                anagramChecker.WordsAreAnagrams(null, "vile");
-            }
-            catch (ArgumentException ex)
-            {
-                // Capture the exception message
-                errorMessage = ex.Message;
-            }
-
-            // Assert
-            Assert.Fail($"{errorMessage}");
+            // Act and Assert
+            Assert.Throws<ArgumentNullException>(() => anagramChecker.WordsAreAnagrams(null, "vile"));
         }
 
         [Test]
@@ -133,135 +101,58 @@ namespace AnagramChecker.Tests
             // Arrange
             var anagramChecker = new AnagramChecker();
 
-            // Act
-            string errorMessage = "";
-            try
-            {
-                anagramChecker.WordsAreAnagrams("evil", null);
-            }
-            catch (ArgumentException ex)
-            {
-             // Capture the exception message
-                errorMessage = ex.Message;
-            }
-
-            // Assert
-            Assert.Fail($"{errorMessage}");
+            // Act and Assert
+            Assert.Throws<ArgumentNullException>(() => anagramChecker.WordsAreAnagrams("evil", null));
         }
 
         [Test]
         public void WordsAreAnagrams_EmptyFirstArgument_ThrowsException()
         {
             // Arrange
-           var anagramChecker = new AnagramChecker();
+            var anagramChecker = new AnagramChecker();
 
-            // Act
-            string errorMessage = "";
-            try
-            {
-                anagramChecker.WordsAreAnagrams("", "vile");
-            }
-            catch (ArgumentException ex)
-            {
-                // Capture the exception message
-                errorMessage = ex.Message;
-            }
-
-            // Assert
-            Assert.Fail($"{errorMessage}");
-
+            // Act and Assert
+            Assert.Throws<ArgumentException>(() => anagramChecker.WordsAreAnagrams("", "vile"));
         }
 
         [Test]
         public void WordsAreAnagrams_EmptySecondArgument_ThrowsException()
         {
             // Arrange
-           
             var anagramChecker = new AnagramChecker();
 
-            // Act
-            string errorMessage = "";
-            try
-            {
-                anagramChecker.WordsAreAnagrams("evil", "");
-            }
-            catch (ArgumentException ex)
-            {
-                // Capture the exception message
-                errorMessage = ex.Message;
-            }
-
-            // Assert
-            Assert.Fail($"{errorMessage}");
+            // Act and Assert
+            Assert.Throws<ArgumentException>(() => anagramChecker.WordsAreAnagrams("evil", ""));
         }
 
         [Test]
         public void WordsAreAnagrams_InvalidCharacterInFirstArgument_ThrowsException()
         {
             // Arrange
-           
             var anagramChecker = new AnagramChecker();
 
-            // Act
-            string errorMessage = "";
-            try
-            {
-                anagramChecker.WordsAreAnagrams("dollar$", "vile");
-            }
-            catch (ArgumentException ex)
-            {
-                // Capture the exception message
-                errorMessage = ex.Message;
-            }
-
-            // Assert
-            Assert.Fail($"{errorMessage}");
+            // Act and Assert
+            Assert.Throws<ArgumentException>(() => anagramChecker.WordsAreAnagrams("dollar$", "vile"));
         }
 
         [Test]
         public void WordsAreAnagrams_InvalidCharacterInSecondArgument_ThrowsException()
         {
             // Arrange
-           
             var anagramChecker = new AnagramChecker();
 
-            // Act
-            string errorMessage = "";
-            try
-            {
-                anagramChecker.WordsAreAnagrams("evil", "number1fan");
-            }
-            catch (ArgumentException ex)
-            {
-                // Capture the exception message
-                errorMessage = ex.Message;
-            }
-
-            // Assert
-            Assert.Fail($"{errorMessage}");
+            // Act and Assert
+            Assert.Throws<ArgumentException>(() => anagramChecker.WordsAreAnagrams("evil", "number1fan"));
         }
 
         [Test]
         public void WordsAreAnagrams_ArgumentWithSpace_ThrowsException()
         {
             // Arrange
-            
             var anagramChecker = new AnagramChecker();
 
-            // Act
-            string errorMessage = "";
-            try
-            {
-                anagramChecker.WordsAreAnagrams("evil", "contains a space");
-            }
-            catch (ArgumentException ex)
-            {
-                // Capture the exception message
-                errorMessage = ex.Message;
-            }
-
-            // Assert
-            Assert.Fail($"{errorMessage}");
+            // Act and Assert
+            Assert.Throws<ArgumentException>(() => anagramChecker.WordsAreAnagrams("evil", "contains a space"));
         }
     }
 }
