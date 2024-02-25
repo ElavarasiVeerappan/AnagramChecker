@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using AnagramChecker;
 using NUnit.Framework.Legacy;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.ComponentModel;
 
 
 namespace AnagramChecker.Tests
@@ -13,6 +15,16 @@ namespace AnagramChecker.Tests
     [TestFixture]
     public class UnitTesting
     {
+        /// <summary>
+        /// The Test Methods in this file covers all the conditions mentioned below:
+        /// 1) The method should return true if the words are anagrams of each other.
+        /// 2) The method should return false if the words are not anagrams of each other.
+        /// 3) The method should return false if the words are identical.
+        /// 4) All checks should be case insensitive.
+        /// 5) An exception should be thrown if either argument is null or empty.
+        /// 6) An exception should be thrown if either argument contains a non-alpha character (i.e.only A to Z are
+        ///    valid, whitespace is invalid).
+        /// </summary>
         [Test]
         public void WordsAreAnagrams_ValidAnagramLowerCase_ReturnsTrue()
         {
